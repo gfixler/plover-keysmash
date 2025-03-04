@@ -7,23 +7,33 @@ PLOVER_EXTENDED = True
 
 TOP_S = "^" if PLOVER_EXTENDED else "S"
 
-keymap = {
-    "S": "qaz",
+keymapLeft = {
+    "S": "qaaz",
+    "TK": "wssx",
     "T": "ws",
     "K": "sx",
+    "PW": "eddc",
     "P": "ed",
     "W": "dc",
+    "HR": "rtffggvb",
     "H": "rtfg",
     "R": "fgvb",
-    "-F": "yuhj",
-    "-R": "hjnm",
-    "-P": "ik",
-    "-B": "k,",
-    "-L": "P;",
-    "-G": ";/",
-    "-T": "['",
-    "-S": "'",
-    "-D": "\\",
+}
+
+keymapRight = {
+    "FR": "yuhhjjnm",
+    "F": "yuhj",
+    "R": "hjnm",
+    "PB": "ikk,",
+    "P": "ik",
+    "B": "k,",
+    "LG": "oll.",
+    "L": "ol",
+    "G": "l.",
+    "TS": "p;;/",
+    "T": "p;",
+    "S": ";/",
+    "D": "\\",
 } | ({
     "^": "qa",
     "S": "az",
@@ -84,14 +94,17 @@ def lookup(outline):
 
     pressed = []
 
-    for side, sep in [(left, ""), (right, "-")]:
-        if side:
-            for key in side:
-                char = random.choice(keymap[sep + key])
-                if shift and char in shifts:
-                    pressed.append(shifts[char])
-                else:
-                    pressed.append(char)
+    for entry in keymapLeft:
+        if left.startswith(entry):
+            char = random.choice(keymapLeft[entry])
+            left = left[len(entry):]
+            pressed.append(char)
+
+    for entry in keymapRight:
+        if right.startswith(entry):
+            char = random.choice(keymapRight[entry])
+            right = right[len(entry):]
+            pressed.append(char)
 
     if pressed:
         random.shuffle(pressed)
