@@ -9,35 +9,37 @@ TOP_S = "^" if PLOVER_EXTENDED else "S"
 
 keymapLeft = {
     "S": "qaaz",
-    "TK": "wssx",
-    "T": "ws",
-    "K": "sx",
-    "PW": "eddc",
-    "P": "ed",
-    "W": "dc",
-    "HR": "rtffggvb",
-    "H": "rtfg",
-    "R": "fgvb",
-}
+    "TK": "s",
+    "T": "w",
+    "K": "x",
+    "PW": "d",
+    "P": "e",
+    "W": "c",
+    "HR": "fg",
+    "H": "rt",
+    "R": "vb",
+} | ({
+    "^S": "a",
+    "^": "q",
+    "S": "z",
+} if TOP_S else {})
 
 keymapRight = {
-    "FR": "yuhhjjnm",
-    "F": "yuhj",
-    "R": "hjnm",
-    "PB": "ikk,",
-    "P": "ik",
-    "B": "k,",
-    "LG": "oll.",
-    "L": "ol",
-    "G": "l.",
-    "TS": "p;;/",
-    "T": "p;",
-    "S": ";/",
-    "D": "\\",
-} | ({
-    "^": "qa",
-    "S": "az",
-} if TOP_S else {})
+    "FR": "hj",
+    "F": "yu",
+    "R": "nm",
+    "PB": "k",
+    "P": "i",
+    "B": ",",
+    "LG": "l",
+    "L": "o",
+    "G": ".",
+    "TS": ";",
+    "T": "p",
+    "S": "/",
+    "DZ": "'",
+    "D": "[]\\",
+}
 
 numbers = {
     "^": "1",
